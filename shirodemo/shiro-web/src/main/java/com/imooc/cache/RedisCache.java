@@ -32,7 +32,6 @@ public class RedisCache<K,V> implements Cache<K,V> {
         return SerializationUtils.serialize(k);
     }
 
-    @Override
     public V get(K k) throws CacheException {
         System.out.println("从redis获取数据"+"========");
         byte[] value = jedisUtil.get(getKey(k));
@@ -42,7 +41,6 @@ public class RedisCache<K,V> implements Cache<K,V> {
         return null;
     }
 
-    @Override
     public V put(K k, V v) throws CacheException {
         byte[] key = getKey(k);
         byte[] value = SerializationUtils.serialize(v);
@@ -51,7 +49,6 @@ public class RedisCache<K,V> implements Cache<K,V> {
         return v;
     }
 
-    @Override
     public V remove(K k) throws CacheException {
         byte[] key = getKey(k);
         byte[] value = jedisUtil.get(key);
@@ -62,22 +59,18 @@ public class RedisCache<K,V> implements Cache<K,V> {
         return null;
     }
 
-    @Override
     public void clear() throws CacheException {
         //不要重写此方法。
     }
 
-    @Override
     public int size() {
         return 0;
     }
 
-    @Override
     public Set<K> keys() {
         return null;
     }
 
-    @Override
     public Collection<V> values() {
         return null;
     }
